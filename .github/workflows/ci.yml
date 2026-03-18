@@ -1,0 +1,50 @@
+# What this file does:
+# Automatically runs every time you push to GitHub
+# 1. Sets up Python
+# 2. Installs dependencies
+# 3. Runs a test to check the API works
+# 4. Builds the Docker image
+
+
+name: CI — Loyalty Classifier
+
+# WHEN TO RUN
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# JOBS 
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out your code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest httpx
+
+      # 4. Train the model (needed before API test)
+      - name: Train model
+        run: python model/train.py
+
+      # 5. Test the API
+      - name: Test API
+        run: pytest tests/ -v
+
+      # 6. Build Docker image
+      - name: Build Docker image
+        run: docker build -t loyalty-classifier .
