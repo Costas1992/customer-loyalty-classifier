@@ -1,0 +1,201 @@
+client_id,client_name,recency,frequency,monetary,segment
+C00001,Jonas Larsen,3,5,5,At Risk
+C00002,Erik Andersen,9,3,3,Lost
+C00003,Jonas Solberg,6,4,5,At Risk
+C00004,Nikos Berg,1,8,8,Loyal
+C00005,Erik Andersen,2,7,7,At Risk
+C00006,Anna Haugen,1,6,6,At Risk
+C00007,Erik Olsen,1,10,14,Loyal
+C00008,Sofia Andersen,1,12,25,Loyal
+C00009,Igor Haugen,1,7,7,At Risk
+C00010,Sofia Johansen,1,6,6,At Risk
+C00011,Elena Hansen,2,6,6,At Risk
+C00012,Ingrid Nilsen,1,7,9,Loyal
+C00013,Lars Hansen,1,8,8,Loyal
+C00014,Ingrid Olsen,1,10,11,Loyal
+C00015,Jonas Larsen,1,3,3,At Risk
+C00016,Lars Olsen,10,2,2,Lost
+C00017,Elena Olsen,1,8,8,Loyal
+C00018,Jonas Andersen,1,8,11,Loyal
+C00019,Lars Berg,2,8,8,Loyal
+C00020,Igor Larsen,2,8,8,Loyal
+C00021,Lars Johansen,11,2,2,Lost
+C00022,Ingrid Moen,1,8,9,Loyal
+C00023,Ingrid Andersen,1,8,8,Loyal
+C00024,Igor Larsen,5,8,13,Loyal
+C00025,Jonas Haugen,3,7,7,At Risk
+C00026,Nikos Hansen,1,12,20,Loyal
+C00027,Anna Johansen,2,8,8,Loyal
+C00028,Erik Larsen,1,8,8,Loyal
+C00029,Igor Nilsen,1,9,9,Loyal
+C00030,Sofia Solberg,11,2,2,Lost
+C00031,Anna Nilsen,2,7,8,Loyal
+C00032,Igor Solberg,2,6,6,At Risk
+C00033,Igor Solberg,1,4,4,At Risk
+C00034,Anna Haugen,1,12,28,Loyal
+C00035,Jonas Moen,1,12,12,Loyal
+C00036,Erik Andersen,1,12,25,Loyal
+C00037,Igor Andersen,2,6,6,At Risk
+C00038,Erik Solberg,2,5,5,At Risk
+C00039,Lars Moen,10,2,2,Lost
+C00040,Dean Moen,2,11,11,Loyal
+C00041,Jonas Moen,1,10,11,Loyal
+C00042,Erik Hansen,1,3,3,At Risk
+C00043,Erik Haugen,2,4,5,At Risk
+C00044,Nikos Hansen,7,3,3,Lost
+C00045,Erik Olsen,2,7,8,Loyal
+C00046,Nikos Hansen,2,4,4,At Risk
+C00047,Elena Solberg,1,12,21,Loyal
+C00048,Jonas Solberg,1,8,8,Loyal
+C00049,Lars Berg,1,10,10,Loyal
+C00050,Lars Haugen,2,9,9,Loyal
+C00051,Igor Hansen,12,1,1,Lost
+C00052,Jonas Berg,1,9,11,Loyal
+C00053,Erik Andersen,1,12,25,Loyal
+C00054,Nikos Haugen,1,9,9,Loyal
+C00055,Sofia Olsen,12,1,1,Lost
+C00056,Dean Olsen,12,1,1,Lost
+C00057,Elena Olsen,1,8,8,Loyal
+C00058,Dean Andersen,1,4,4,At Risk
+C00059,Ingrid Berg,8,2,2,Lost
+C00060,Jonas Moen,1,10,10,Loyal
+C00061,Ingrid Solberg,3,7,10,Loyal
+C00062,Nikos Berg,2,3,3,At Risk
+C00063,Dean Larsen,7,5,5,At Risk
+C00064,Anna Andersen,1,12,25,Loyal
+C00065,Jonas Berg,2,6,6,At Risk
+C00066,Anna Berg,1,3,3,At Risk
+C00067,Nikos Nilsen,1,3,3,At Risk
+C00068,Igor Solberg,2,7,7,At Risk
+C00069,Lars Andersen,1,8,9,Loyal
+C00070,Sofia Larsen,1,9,9,Loyal
+C00071,Ingrid Berg,1,10,10,Loyal
+C00072,Lars Berg,12,1,1,Lost
+C00073,Dean Hansen,12,1,1,Lost
+C00074,Lars Moen,1,9,9,Loyal
+C00075,Anna Moen,1,4,4,At Risk
+C00076,Nikos Berg,12,1,1,Lost
+C00077,Sofia Haugen,2,7,7,At Risk
+C00078,Lars Andersen,2,2,2,At Risk
+C00079,Dean Olsen,1,10,19,Loyal
+C00080,Ingrid Haugen,1,8,8,Loyal
+C00081,Sofia Haugen,12,1,1,Lost
+C00082,Lars Larsen,11,2,2,Lost
+C00083,Dean Hansen,1,6,6,At Risk
+C00084,Ingrid Larsen,3,2,2,At Risk
+C00085,Jonas Johansen,1,8,8,Loyal
+C00086,Nikos Hansen,1,9,9,Loyal
+C00087,Elena Hansen,3,5,6,At Risk
+C00088,Erik Hansen,1,4,5,At Risk
+C00089,Dean Johansen,12,1,1,Lost
+C00090,Igor Nilsen,1,8,8,Loyal
+C00091,Jonas Andersen,4,7,7,At Risk
+C00092,Dean Hansen,2,7,7,At Risk
+C00093,Nikos Johansen,1,4,4,At Risk
+C00094,Elena Solberg,1,6,6,At Risk
+C00095,Sofia Berg,12,1,1,Lost
+C00096,Anna Berg,5,2,2,At Risk
+C00097,Erik Hansen,1,6,6,At Risk
+C00098,Sofia Haugen,4,7,7,At Risk
+C00099,Elena Larsen,5,3,3,At Risk
+C00100,Igor Nilsen,9,2,2,Lost
+C00101,Sofia Hansen,12,1,1,Lost
+C00102,Lars Nilsen,3,6,6,At Risk
+C00103,Nikos Larsen,11,1,1,Lost
+C00104,Anna Olsen,5,4,5,At Risk
+C00105,Ingrid Olsen,1,7,8,Loyal
+C00106,Nikos Larsen,1,5,5,At Risk
+C00107,Jonas Larsen,11,1,1,Lost
+C00108,Lars Hansen,2,2,2,At Risk
+C00109,Erik Berg,11,1,1,Lost
+C00110,Igor Haugen,1,3,3,At Risk
+C00111,Dean Moen,1,6,6,At Risk
+C00112,Lars Johansen,11,1,1,Lost
+C00113,Jonas Solberg,4,7,9,Loyal
+C00114,Nikos Berg,11,1,1,Lost
+C00115,Ingrid Moen,3,2,2,At Risk
+C00116,Anna Hansen,11,1,1,Lost
+C00117,Igor Hansen,1,5,5,At Risk
+C00118,Elena Andersen,11,1,1,Lost
+C00119,Jonas Moen,1,5,5,At Risk
+C00120,Lars Olsen,5,3,3,At Risk
+C00121,Nikos Olsen,11,1,1,Lost
+C00122,Anna Haugen,9,2,2,Lost
+C00123,Sofia Haugen,1,6,6,At Risk
+C00124,Dean Haugen,1,3,3,At Risk
+C00125,Anna Hansen,7,3,3,Lost
+C00126,Erik Larsen,2,7,7,At Risk
+C00127,Sofia Haugen,1,6,6,At Risk
+C00128,Anna Olsen,2,5,5,At Risk
+C00129,Lars Olsen,1,5,5,At Risk
+C00130,Lars Johansen,13,0,0,Lost
+C00131,Igor Johansen,11,1,1,Lost
+C00132,Sofia Olsen,3,3,3,At Risk
+C00133,Lars Larsen,11,1,1,Lost
+C00134,Dean Larsen,9,2,2,Lost
+C00135,Dean Andersen,11,1,1,Lost
+C00136,Anna Haugen,1,8,8,Loyal
+C00137,Erik Berg,5,4,4,At Risk
+C00138,Nikos Hansen,2,4,4,At Risk
+C00139,Dean Olsen,6,4,4,At Risk
+C00140,Sofia Berg,1,7,7,At Risk
+C00141,Sofia Nilsen,1,7,7,At Risk
+C00142,Sofia Olsen,7,4,4,At Risk
+C00143,Sofia Haugen,1,4,4,At Risk
+C00144,Igor Andersen,1,4,4,At Risk
+C00145,Dean Hansen,2,5,5,At Risk
+C00146,Elena Olsen,2,4,4,At Risk
+C00147,Anna Olsen,4,4,4,At Risk
+C00148,Dean Hansen,1,8,8,Loyal
+C00149,Elena Nilsen,2,5,5,At Risk
+C00150,Nikos Moen,5,5,5,At Risk
+C00151,Elena Haugen,11,1,1,Lost
+C00152,Dean Andersen,2,6,6,At Risk
+C00153,Nikos Hansen,1,8,8,Loyal
+C00154,Anna Andersen,1,5,5,At Risk
+C00155,Jonas Hansen,1,5,5,At Risk
+C00156,Nikos Johansen,1,5,5,At Risk
+C00157,Lars Solberg,10,2,2,Lost
+C00158,Sofia Solberg,1,5,5,At Risk
+C00159,Nikos Haugen,11,1,1,Lost
+C00160,Erik Johansen,5,4,4,At Risk
+C00161,Sofia Berg,1,5,5,At Risk
+C00162,Igor Solberg,2,3,3,At Risk
+C00163,Igor Solberg,1,6,6,At Risk
+C00164,Dean Haugen,2,4,4,At Risk
+C00165,Dean Moen,6,3,3,At Risk
+C00166,Sofia Berg,1,6,6,At Risk
+C00167,Ingrid Berg,1,10,23,Loyal
+C00168,Ingrid Olsen,3,3,3,At Risk
+C00169,Igor Moen,1,4,4,At Risk
+C00170,Erik Solberg,1,5,13,Loyal
+C00171,Jonas Moen,6,3,3,At Risk
+C00172,Anna Larsen,4,4,4,At Risk
+C00173,Dean Haugen,2,3,3,At Risk
+C00174,Nikos Berg,10,1,1,Lost
+C00175,Igor Johansen,6,2,2,Lost
+C00176,Jonas Nilsen,1,3,3,At Risk
+C00177,Nikos Moen,13,0,0,Lost
+C00178,Ingrid Nilsen,1,3,3,At Risk
+C00179,Ingrid Solberg,1,5,5,At Risk
+C00180,Sofia Hansen,1,6,6,At Risk
+C00181,Anna Solberg,1,5,5,At Risk
+C00182,Sofia Nilsen,2,5,5,At Risk
+C00183,Elena Hansen,1,5,5,At Risk
+C00184,Erik Andersen,5,2,2,At Risk
+C00185,Elena Berg,1,5,5,At Risk
+C00186,Anna Nilsen,2,4,4,At Risk
+C00187,Anna Olsen,3,4,4,At Risk
+C00188,Jonas Haugen,4,4,4,At Risk
+C00189,Anna Johansen,8,2,2,Lost
+C00190,Ingrid Olsen,2,4,4,At Risk
+C00191,Dean Haugen,2,4,4,At Risk
+C00192,Nikos Solberg,5,2,2,At Risk
+C00193,Jonas Solberg,6,2,2,Lost
+C00194,Elena Solberg,13,0,0,Lost
+C00195,Elena Berg,1,3,3,At Risk
+C00196,Lars Andersen,5,2,2,At Risk
+C00197,Dean Solberg,4,3,3,At Risk
+C00198,Ingrid Hansen,4,2,2,At Risk
+C00199,Igor Nilsen,1,7,12,Loyal
+C00200,Lars Haugen,1,7,9,Loyal
