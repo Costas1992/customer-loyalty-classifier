@@ -23,4 +23,5 @@ EXPOSE 8000
 
 # START COMMAND 
 # This runs when the container starts
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+CMD ["sh", "-c", "python model/train.py && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
