@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Loyalty Classifier </title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { display: flex; align-items: center; gap: 14px; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e5e5e0; }
+    .logo { width: 40px; height: 40px; background: #1a1a1a; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; }
+    h1 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 600; }
+    .subtitle { font-size: 13px; color: #888; margin-top: 2px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 2rem; }
+    .stat-card { background: #fff; border-radius: 12px; padding: 1.2rem; border: 1px solid #eee; }
+    .stat-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .stat-value { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 600; line-height: 1; }
+    .loyal-color { color: #1D9E75; }
+    .risk-color  { color: #BA7517; }
+    .lost-color  { color: #E24B4A; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 1rem; }
+    .card { background: #fff; border-radius: 14px; border: 1px solid #eee; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.2rem; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: #888; }
+    .field input { padding: 8px 12px; border: 1px solid #e5e5e0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: #fafaf8; }
+    .months-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 1.2rem; }
+    .month-input { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .month-input label { font-size: 10px; color: #999; }
+    .month-input input { width: 100%; text-align: center; padding: 6px 4px; border: 1px solid #e5e5e0; border-radius: 8px; font-size: 14px; background: #fafaf8; }
+    .predict-btn { width: 100%; padding: 12px; background: #1a1a1a; color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; }
+    .predict-btn:hover { background: #333; }
+    .result-box { margin-top: 1.2rem; padding: 1rem 1.2rem; border-radius: 10px; display: none; }
+    .result-loyal { background: #EAF3DE; border: 1px solid #97C459; }
+    .result-risk  { background: #FAEEDA; border: 1px solid #EF9F27; }
+    .result-lost  { background: #FCEBEB; border: 1px solid #F09595; }
+    .result-seg { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .result-msg { font-size: 13px; }
+    .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .filter-row { display: flex; gap: 6px; }
+    .filter-btn { padding: 5px 14px; border-radius: 20px; border: 1px solid #e5e5e0; background: #f5f5f3; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+    .filter-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+    .table-wrap { background: #fff; border-radius: 14px; border: 1px solid #eee; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { background: #fafaf8; padding: 10px 14px; text-align: left; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #999; border-bottom: 1px solid #eee; }
+    td { padding: 10px 14px; border-top: 1px solid #f0f0ee; }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+    .badge-loyal { background: #EAF3DE; color: #3B6D11; }
+    .badge-risk   { background: #FAEEDA; color: #854F0B; }
+    .badge-lost   { background: #FCEBEB; color: #A32D2D; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">✂</div>
+    <div>
+      <h1>Customer Loyalty Classifier</h1>
+      <p class="subtitle">Client segmentation </p>
+    </div>
+  </header>
+
+  <div class="stats-grid">
+    <div class="stat-card"><p class="stat-label">Loyal clients</p><p class="stat-value loyal-color" id="count-loyal">—</p></div>
+    <div class="stat-card"><p class="stat-label">At risk</p><p class="stat-value risk-color" id="count-risk">—</p></div>
+    <div class="stat-card"><p class="stat-label">Lost</p><p class="stat-value lost-color" id="count-lost">—</p></div>
+  </div>
+
+  <p class="section-title">Predict a customer's segment</p>
+  <div class="card">
+    <div class="name-row">
+      <div class="field"><label>Client ID</label><input type="text" id="cid" placeholder="C00201"/></div>
+      <div class="field"><label>Client name</label><input type="text" id="cname" placeholder="Name"/></div>
+    </div>
+    <div class="months-grid" id="month-inputs"></div>
+    <button class="predict-btn" onclick="predict()">Classify customer</button>
+    <div class="result-box" id="result-box">
+      <p class="result-seg" id="result-seg"></p>
+      <p class="result-msg" id="result-msg"></p>
+    </div>
+  </div>
+
+  <div class="table-header">
+    <p class="section-title" style="margin:0">All customers</p>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filterTable('all',this)">All</button>
+      <button class="filter-btn" onclick="filterTable('Loyal',this)">Loyal</button>
+      <button class="filter-btn" onclick="filterTable('At Risk',this)">At risk</button>
+      <button class="filter-btn" onclick="filterTable('Lost',this)">Lost</button>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>ID</th><th>Name</th><th>Frequency</th><th>Total visits</th><th>Segment</th></tr></thead>
+      <tbody id="cust-tbody"><tr><td colspan="5" style="text-align:center;padding:2rem;color:#999">Loading...</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const grid = document.getElementById('month-inputs');
+months.forEach((m,i) => {
+  grid.innerHTML += `<div class="month-input"><label>${m}</label><input type="number" id="m${i}" min="0" max="5" value="0"/></div>`;
+});
+
+let allCustomers = [];
+
+async function loadCustomers() {
+  try {
+    const r = await fetch('/customers');
+    const d = await r.json();
+    allCustomers = d.customers;
+    updateStats(allCustomers);
+    renderTable(allCustomers);
+  } catch(e) { document.getElementById('cust-tbody').innerHTML='<tr><td colspan="5" style="text-align:center;padding:2rem;color:#999">Could not connect to API</td></tr>'; }
+}
+
+function updateStats(data) {
+  document.getElementById('count-loyal').textContent = data.filter(c=>c.segment==='Loyal').length;
+  document.getElementById('count-risk').textContent  = data.filter(c=>c.segment==='At Risk').length;
+  document.getElementById('count-lost').textContent  = data.filter(c=>c.segment==='Lost').length;
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('cust-tbody');
+  if(!data.length){ tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:1.5rem;color:#999">No customers found</td></tr>'; return; }
+  tbody.innerHTML = data.map(c => {
+    const cls = c.segment==='Loyal'?'loyal':c.segment==='At Risk'?'risk':'lost';
+    return `<tr><td style="color:#999">${c.client_id}</td><td>${c.client_name}</td><td>${c.frequency}</td><td>${c.monetary}</td><td><span class="badge badge-${cls}">${c.segment}</span></td></tr>`;
+  }).join('');
+}
+
+function filterTable(seg, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable(seg==='all' ? allCustomers : allCustomers.filter(c=>c.segment===seg));
+}
+
+async function predict() {
+  const visits = months.map((_,i) => parseInt(document.getElementById('m'+i).value)||0);
+  const body = { client_id: document.getElementById('cid').value||'C00NEW', client_name: document.getElementById('cname').value||'New Client', visits };
+  const r = await fetch('/predict', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+  const d = await r.json();
+  const box = document.getElementById('result-box');
+  const cls = d.segment==='Loyal'?'loyal':d.segment==='At Risk'?'risk':'lost';
+  box.className = `result-box result-${cls}`;
+  box.style.display = 'block';
+  document.getElementById('result-seg').textContent = d.segment;
+  document.getElementById('result-msg').textContent = d.message;
+}
+
+loadCustomers();
+</script>
+</body>
+</html>

@@ -1,4 +1,6 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import pandas as pd
 import joblib
@@ -18,6 +20,12 @@ app = FastAPI(
 
 )    
 
+#  SERVE FRONTEND 
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+@app.get("/dashboard")
+def dashboard():
+    return FileResponse("app/static/index.html")
 
 # DEFINE INPUT STRUCTURE 
 # This is what the API expects to receive
