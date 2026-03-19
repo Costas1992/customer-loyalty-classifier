@@ -12,7 +12,9 @@ pinned: true
 
 A machine learning app that classifies barbershop customers into **Loyal**, **At Risk**, or **Lost** segments using RFM analysis.
 
-## Live Demo
+# Live Demo
+
+[View live app](https://costas92-customer-loyalty-classifier.hf.space/dashboard)
 
 - **Dashboard** → `/dashboard`
 - **API Docs** → `/docs`
