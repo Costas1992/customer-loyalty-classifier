@@ -83,7 +83,7 @@ def get_message(segment: str) -> str:
 # Root endpoint, just a welcome message
 @app.get("/")
 def root():
-    return RedirectResponse(url="/dashboard")
+    return FileResponse("app/static/index.html")
     
 
 # Predict endpoint — classify a single customer
