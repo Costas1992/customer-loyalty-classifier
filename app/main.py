@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from pydantic import BaseModel
 import pandas as pd
 import joblib
@@ -83,10 +83,8 @@ def get_message(segment: str) -> str:
 # Root endpoint, just a welcome message
 @app.get("/")
 def root():
-    return {
-        "message": "Welcome to the Customer Loyalty Classifier ",
-        "docs": "Visit /docs to try the API interactively"
-    }
+    return RedirectResponse(url="/dashboard")
+    
 
 # Predict endpoint — classify a single customer
 @app.post("/predict", response_model=PredictionOutput)
