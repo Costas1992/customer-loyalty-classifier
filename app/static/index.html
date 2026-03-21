@@ -70,9 +70,9 @@
 
   <p class="section-title">Predict a customer's segment</p>
   <div class="card">
-    <div class="name-row">
+    <div class="name-row" style="grid-template-columns: 1fr;">
       <div class="field"><label>Client ID</label><input type="text" id="cid" placeholder="C00201"/></div>
-      <div class="field"><label>Client name</label><input type="text" id="cname" placeholder="Name"/></div>
+      
     </div>
     <div class="months-grid" id="month-inputs"></div>
     <button class="predict-btn" onclick="predict()">Classify customer</button>
@@ -94,7 +94,7 @@
 
   <div class="table-wrap">
     <table>
-      <thead><tr><th>ID</th><th>Name</th><th>Frequency</th><th>Total visits</th><th>Segment</th></tr></thead>
+      <thead><tr><th>ID</th><th>Frequency</th><th>Total visits</th><th>Segment</th></tr></thead>
       <tbody id="cust-tbody"><tr><td colspan="5" style="text-align:center;padding:2rem;color:#999">Loading...</td></tr></tbody>
     </table>
   </div>
@@ -130,7 +130,7 @@ function renderTable(data) {
   if(!data.length){ tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:1.5rem;color:#999">No customers found</td></tr>'; return; }
   tbody.innerHTML = data.map(c => {
     const cls = c.segment==='Loyal'?'loyal':c.segment==='At Risk'?'risk':'lost';
-    return `<tr><td style="color:#999">${c.client_id}</td><td>${c.client_name}</td><td>${c.frequency}</td><td>${c.monetary}</td><td><span class="badge badge-${cls}">${c.segment}</span></td></tr>`;
+    return `<tr><td style="color:#999">${c.client_id}</td><td>${c.frequency}</td><td>${c.monetary}</td><td><span class="badge badge-${cls}">${c.segment}</span></td></tr>`;
   }).join('');
 }
 
