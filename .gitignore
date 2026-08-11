@@ -6,3 +6,5 @@ __pycache__/
 .pytest_cache/
 mlruns/
 mlflow.db
+data/new_batch_clean.csv
+data/new_batch_drifted.csv
