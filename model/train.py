@@ -4,9 +4,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 import joblib
 import os
+import mlflow
+
+mlflow.set_experiment("customer-segmentation")
+mlflow.start_run(run_name="train")
 
 # load the dataset
 df = pd.read_csv("data/customers.csv", sep=";", skiprows=1)
+mlflow.log_param("n_customers", len(df))
 
 print(f"Loaded {len(df)} customers.")
 
@@ -30,6 +35,10 @@ df["monetary"] = df[month_cols].sum(axis=1)
 print("\n RFM Summary:")
 print(df[["recency", "frequency", "monetary"]].describe().round(2))
 
+for feat in ["recency", "frequency", "monetary"]:
+    mlflow.log_metric(f"{feat}_mean", float(df[feat].mean()))
+    mlflow.log_metric(f"{feat}_std", float(df[feat].std()))
+
 # SCALE THE FEATURES 
 # KMeans works with distances, so we need to scale
 # so recency, frequency, monetary are on same range
@@ -39,7 +48,11 @@ rfm_scaled = scaler.fit_transform(rfm)
 
 # TRAIN KMEANS WITH 3 CLUSTERS 
 # 3 clusters = Loyal, At Risk, Lost
-kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
+N_CLUSTERS = 3
+mlflow.log_param("n_clusters", N_CLUSTERS)
+mlflow.log_param("random_state", 42)
+
+kmeans = KMeans(n_clusters=N_CLUSTERS, random_state=42, n_init=10)
 df["cluster"] = kmeans.fit_predict(rfm_scaled)
 
 # LABEL THE CLUSTERS 
@@ -67,6 +80,9 @@ for seg in ['Loyal', 'At Risk', 'Lost']:
     print(f"\n  {seg}:")
     print(sample.to_string(index=False))
 
+for seg, count in df['segment'].value_counts().items():
+    mlflow.log_metric(f"segment_count_{seg.lower().replace(' ', '_')}", int(count))
+
 # MODEL & SCALER 
 os.makedirs('model', exist_ok=True)
 joblib.dump(kmeans,  'model/kmeans_model.pkl')
@@ -80,3 +96,10 @@ df[['client_id','client_name','recency','frequency','monetary','segment']]\
 print("\n Model saved to model/kmeans_model.pkl")
 print(" Results saved to data/customers_segmented.csv")
 print("\n Training complete!")
+
+mlflow.log_artifact('model/kmeans_model.pkl')
+mlflow.log_artifact('model/scaler.pkl')
+mlflow.log_artifact('model/label_map.pkl')
+mlflow.log_artifact('data/customers_segmented.csv')
+
+mlflow.end_run()
