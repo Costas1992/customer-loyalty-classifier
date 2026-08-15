@@ -25,7 +25,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 @app.get("/dashboard")
 def dashboard():
-    return FileResponse("app/static/index.html")
+    return FileResponse("app/static/index.html", headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
 
 # DEFINE INPUT STRUCTURE 
 # This is what the API expects to receive
@@ -83,7 +83,7 @@ def get_message(segment: str) -> str:
 # Root endpoint, just a welcome message
 @app.get("/")
 def root():
-    return FileResponse("app/static/index.html")
+    return FileResponse("app/static/index.html", headers={"Cache-Control": "no-cache, no-store, must-revalidate"})
     
 
 # Predict endpoint — classify a single customer
