@@ -142,7 +142,7 @@ function filterTable(seg, btn) {
 
 async function predict() {
   const visits = months.map((_,i) => parseInt(document.getElementById('m'+i).value)||0);
-  const body = { client_id: document.getElementById('cid').value||'C00NEW', client_name: document.getElementById('cname').value||'New Client', visits };
+  const body = { client_id: document.getElementById('cid').value||'C00NEW', client_name: 'New Client', visits };
   const r = await fetch('/predict', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
   const d = await r.json();
   const box = document.getElementById('result-box');
