@@ -5,6 +5,8 @@ from pydantic import BaseModel
 import pandas as pd
 import joblib
 import os
+from model.monitor import check_drift
+from data.simulate_new_batch import make_clean_batch, make_drifted_batch
 
 # LOAD THE TRAINED MODEL 
 # These files were created when we ran train.py
@@ -133,4 +135,26 @@ def get_customers(segment: str = None):
     return {
         "total": len(df),
         "customers": df.to_dict(orient='records')
+    }
+
+# Drift monitoring endpoint — live demonstration of the drift detection system.
+# Real "new month" data isn't available yet, so this generates a synthetic
+# comparison batch on demand: "clean" (small noise, should show no drift)
+# or "drifted" (simulated churn, should trigger drift on recency).
+@app.get("/drift-status")
+def drift_status(scenario: str = "drifted"):
+    if scenario not in ("clean", "drifted"):
+        raise HTTPException(status_code=400, detail="scenario must be 'clean' or 'drifted'")
+
+    import numpy as np
+    np.random.seed(42)  # reset so every API call reproduces the same validated scenario
+
+    reference_df = pd.read_csv('data/customers.csv', sep=';', skiprows=1)
+    comparison_df = make_clean_batch(reference_df) if scenario == "clean" else make_drifted_batch(reference_df)
+
+    result = check_drift(reference_df, comparison_df)
+    return {
+        "scenario": scenario,
+        "features": result["features"],
+        "overall_drift": result["overall_drift"]
     }
